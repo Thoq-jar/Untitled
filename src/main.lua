@@ -55,7 +55,7 @@ function love.draw()
     love.graphics.print("Points: " .. Points, 10, 10)
     love.graphics.print("Speed: " .. tostring(math.floor((0.1 - Speed) * 1000)), 10, 30)
     if Dead == true then
-        love.graphics.print("You died! you can press 'R' to respawn, press 'O' to lag the computer or press 'L' to destroy Unix", 10, 50)
+        love.graphics.print("You died! you can press 'R' to respawn, press 'O' to boom the computer or press 'L' to destroy Unix", 10, 50)
     end
 end
 
