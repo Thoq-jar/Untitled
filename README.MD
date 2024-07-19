@@ -8,7 +8,7 @@ Prerequisites:
 
 To run execute this command:
 ```bash
-git clone https://github.com/Thoq-jar/Untitled.git && cd SnakePanic && cc crash.c -o kaboom && cc lag.c -o boom && sudo love src/
+git clone https://github.com/Thoq-jar/Untitled.git && cd Untitled && cc crash.c -o kaboom && cc lag.c -o boom && sudo love src/
 ```
 
 - On Linux / BSD you should be good to go!
