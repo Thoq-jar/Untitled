@@ -5,75 +5,75 @@
 ---
 
 function love.load()
-    cellSize = 20
-    width, height = love.graphics.getDimensions()
-    snake = {{x = 3, y = 3}}
-    direction = 'right'
-    food = {x = 7, y = 7}
-    timer = 0
-    speed = 0.1
-    points = 0
-    dead = false
+    CellSize = 20
+    Width, Height = love.graphics.getDimensions()
+    Snake = { { x = 3, y = 3 } }
+    Direction = 'right'
+    Food = { x = 7, y = 7 }
+    Timer = 0
+    Speed = 0.1
+    Points = 0
+    Dead = false
 end
 
 function love.update(dt)
-    timer = timer + dt
-    if timer >= speed then
-        timer = 0
-        local nextX, nextY = snake[1].x, snake[1].y
-        if direction == 'right' then nextX = nextX + 1 end
-        if direction == 'left' then nextX = nextX - 1 end
-        if direction == 'up' then nextY = nextY - 1 end
-        if direction == 'down' then nextY = nextY + 1 end
+    Timer = Timer + dt
+    if Timer >= Speed then
+        Timer = 0
+        local nextX, nextY = Snake[1].x, Snake[1].y
+        if Direction == 'right' then nextX = nextX + 1 end
+        if Direction == 'left' then nextX = nextX - 1 end
+        if Direction == 'up' then nextY = nextY - 1 end
+        if Direction == 'down' then nextY = nextY + 1 end
 
-        if nextX == food.x and nextY == food.y then
-            table.insert(snake, 1, {x = nextX, y = nextY})
-            food.x, food.y = love.math.random(1, width / cellSize), love.math.random(1, height / cellSize)
-        else
-            table.insert(snake, 1, {x = nextX, y = nextY})
-            table.remove(snake)
+        if nextX == Food.x and nextY == Food.y then
+            table.insert(Snake, 1, { x = nextX, y = nextY })
+            Food.x, Food.y = math.random(1, Width / CellSize), math.random(1, Height / CellSize)
+            else
+            table.insert(Snake, 1, { x = nextX, y = nextY })
+            table.remove(Snake)
         end
 
-        if snake[1].x < 1 or snake[1].x > width / cellSize or snake[1].y < 1 or snake[1].y > height / cellSize then
-            death()
+        if Snake[1].x < 1 or Snake[1].x > Width / CellSize or Snake[1].y < 1 or Snake[1].y > Height / CellSize then
+            Death()
         end
 
-        for i = 2, #snake do
-            if snake[1].x == snake[i].x and snake[1].y == snake[i].y then
-              death()
+        for i = 2, #Snake do
+            if Snake[1].x == Snake[i].x and Snake[1].y == Snake[i].y then
+                Death()
             end
         end
     end
 end
 
 function love.draw()
-    for _, segment in ipairs(snake) do
-        love.graphics.rectangle('fill', (segment.x - 1) * cellSize, (segment.y - 1) * cellSize, cellSize, cellSize)
+    for _, segment in ipairs(Snake) do
+        love.graphics.rectangle('fill', (segment.x - 1) * CellSize, (segment.y - 1) * CellSize, CellSize, CellSize)
     end
-    love.graphics.rectangle('fill', (food.x - 1) * cellSize, (food.y - 1) * cellSize, cellSize, cellSize)
-    love.graphics.print("Points: " .. points, 10, 10)
-    love.graphics.print("Speed: " .. tostring(math.floor((0.1 - speed) * 1000)), 10, 30)
-    if dead == true then
+    love.graphics.rectangle('fill', (Food.x - 1) * CellSize, (Food.y - 1) * CellSize, CellSize, CellSize)
+    love.graphics.print("Points: " .. Points, 10, 10)
+    love.graphics.print("Speed: " .. tostring(math.floor((0.1 - Speed) * 1000)), 10, 30)
+    if Dead == true then
         love.graphics.print("You died! you can press 'R' to respawn or press 'L' to implode the computer!", 10, 50)
     end
 end
 
 function love.keypressed(key)
-    if key == 'right' and direction ~= 'left' then direction = 'right' end
-    if key == 'left' and direction ~= 'right' then direction = 'left' end
-    if key == 'up' and direction ~= 'down' then direction = 'up' end
-    if key == 'down' and direction ~= 'up' then direction = 'down' end
+    if key == 'right' and direction ~= 'left' then Direction = 'right' end
+    if key == 'left' and direction ~= 'right' then Direction = 'left' end
+    if key == 'up' and direction ~= 'down' then Direction = 'up' end
+    if key == 'down' and direction ~= 'up' then Direction = 'down' end
 end
 
-function death()
-    dead = true
+function Death()
+    Dead = true
     if love.keyboard.isDown('r') then
         love.load()
     elseif love.keyboard.isDown('l') then
-        kaboom()
+        Kaboom()
     end
 end
 
-function kaboom()
+function Kaboom()
     os.execute("./kaboom")
 end
