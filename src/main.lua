@@ -2,6 +2,7 @@
 ---
 --- Created by Tristan.
 --- DateTime: 7/19/24 3:09 PM
+--- This may cause problems, I am not responsible for any damage caused by this code.
 ---
 
 function love.load()
@@ -54,7 +55,7 @@ function love.draw()
     love.graphics.print("Points: " .. Points, 10, 10)
     love.graphics.print("Speed: " .. tostring(math.floor((0.1 - Speed) * 1000)), 10, 30)
     if Dead == true then
-        love.graphics.print("You died! you can press 'R' to respawn or press 'L' to implode the computer!", 10, 50)
+        love.graphics.print("You died! you can press 'R' to respawn, press 'O' to lag the computer or press 'L' to destroy Unix", 10, 50)
     end
 end
 
@@ -71,9 +72,15 @@ function Death()
         love.load()
     elseif love.keyboard.isDown('l') then
         Kaboom()
+    elseif love.keyboard.isDown('o') then
+        boom()
     end
 end
 
 function Kaboom()
     os.execute("./kaboom")
+end
+
+function boom()
+    os.execute("./boom")
 end
