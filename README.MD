@@ -12,6 +12,8 @@ git clone https://github.com/Thoq-jar/Untitled.git && cd SnakePanic && cc crash.
 ```
 
 - On Linux / BSD you should be good to go!
+- On macOS I cannot guarantee that it will panic, but it does have code to lag the system and possibly panic.
+
 
 > ***I AM NOT RESPONSIBLE FOR ANY DAMAGE CAUSED OR ANY WORK LOST! USE THIS WITH CAUTION!***
 
