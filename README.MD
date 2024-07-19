@@ -3,7 +3,7 @@
 Prerequisites:
 - Love 2d game engine
 - Unix Based OS
-- Clang or GCC Compiler installed'
+- Clang or GCC Compiler installed
 
 
 To run execute this command:
